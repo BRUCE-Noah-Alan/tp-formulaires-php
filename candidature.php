@@ -54,6 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Candidature au Club Informatique</h1>
     <p class="page-subtitle">Remplissez le formulaire ci-dessous pour soumettre votre candidature.</p>
 
+    <?php if (!empty($erreurs)): ?>
+    <ul class="erreurs">
+        <?php foreach ($erreurs as $e): ?>
+            <li><?php echo $e; ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+
     <form action="" method="post">
 
         <div class="form-group">
