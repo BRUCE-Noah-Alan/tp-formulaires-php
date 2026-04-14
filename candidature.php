@@ -51,62 +51,98 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <div class="container">
+
     <h1>Candidature au Club Informatique</h1>
     <p class="page-subtitle">Remplissez le formulaire ci-dessous pour soumettre votre candidature.</p>
 
-    <?php if (!empty($erreurs)): ?>
-    <ul class="erreurs">
-        <?php foreach ($erreurs as $e): ?>
-            <li><?php echo $e; ?></li>
-        <?php endforeach; ?>
-    </ul>
+    <?php if (empty($erreurs) && $_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+
+        <div class="confirmation">
+            <h2>Candidature reçue !</h2>
+
+            <div class="recap-item">
+                <span class="recap-label">Prénom</span>
+                <span class="recap-value"><?php echo $prenom; ?></span>
+            </div>
+            <div class="recap-item">
+                <span class="recap-label">Nom</span>
+                <span class="recap-value"><?php echo $nom; ?></span>
+            </div>
+            <div class="recap-item">
+                <span class="recap-label">Adresse email</span>
+                <span class="recap-value"><?php echo $email; ?></span>
+            </div>
+            <div class="recap-item">
+                <span class="recap-label">Âge</span>
+                <span class="recap-value"><?php echo $age; ?> ans</span>
+            </div>
+            <div class="recap-item">
+                <span class="recap-label">Filière souhaitée</span>
+                <span class="recap-value"><?php echo $filiere; ?></span>
+            </div>
+            <div class="recap-item">
+                <span class="recap-label">Lettre de motivation</span>
+                <span class="recap-value"><?php echo $motivation; ?></span>
+            </div>
+
+            <p class="message-final">
+                Votre candidature a bien été enregistrée. Nous vous contacterons à l'adresse indiquée.
+            </p>
+
+            <a href="candidature.php">Soumettre une nouvelle candidature</a>
+        </div>
+
+    <?php else: ?>
+
+        <?php if (!empty($erreurs)): ?>
+        <ul class="erreurs">
+            <?php foreach ($erreurs as $e): ?>
+                <li><?php echo $e; ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php endif; ?>
+
+        <form action="" method="post">
+
+            <div class="form-group">
+                <label>Prénom:</label>
+                <input type="text" name="prenom" value="<?php echo $prenom; ?>">
+            </div>
+            <div class="form-group">
+                <label>Nom:</label>
+                <input type="text" name="nom" value="<?php echo $nom; ?>">
+            </div>
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" value="<?php echo $email; ?>">
+            </div>
+            <div class="form-group">
+                <label>Âge:</label>
+                <input type="number" name="age" value="<?php echo $age; ?>">
+            </div>
+            <div class="form-group">
+                <select name="filiere">
+                    <option value="">Sélectionnez votre filière</option>
+                    <option value="1" <?php echo ($filiere === '1') ? 'selected' : ''; ?>>Informatique</option>
+                    <option value="2" <?php echo ($filiere === '2') ? 'selected' : ''; ?>>Mathematique</option>
+                    <option value="3" <?php echo ($filiere === '3') ? 'selected' : ''; ?>>Physique</option>
+                    <option value="4" <?php echo ($filiere === '4') ? 'selected' : ''; ?>>Autres</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Motivation:</label>
+                <textarea name="motivation" rows="4" cols="50"><?php echo $motivation; ?></textarea>
+            </div>
+            <div class="form-group">
+                <label>J'ai lu et j'accepte les conditions d'utilisation</label>
+                <input type="checkbox" name="conditions" <?php echo $conditions ? 'checked' : ''; ?>>
+            </div>
+
+            <button type="submit">Soumettre</button>
+
+        </form>
+
     <?php endif; ?>
-
-    <form action="" method="post">
-
-        <div class="form-group">
-            <label>Prénom:</label>
-            <input type="text" name="prenom" value="<?php echo $prenom; ?>">
-        </div>
-
-        <div class="form-group">
-            <label>Nom:</label>
-            <input type="text" name="nom" value="<?php echo $nom; ?>">
-        </div>
-
-        <div class="form-group">
-            <label>Email:</label>
-            <input type="email" name="email" value="<?php echo $email; ?>">
-        </div>
-
-        <div class="form-group">
-            <label>Âge:</label>
-            <input type="number" name="age" value="<?php echo $age; ?>">
-        </div>
-
-        <div class="form-group">
-            <select name="filiere">
-                <option value="">Sélectionnez votre filière</option>
-                <option value="1" <?php echo ($filiere === '1') ? 'selected' : ''; ?>>Informatique</option>
-                <option value="2" <?php echo ($filiere === '2') ? 'selected' : ''; ?>>Mathematique</option>
-                <option value="3" <?php echo ($filiere === '3') ? 'selected' : ''; ?>>Physique</option>
-                <option value="4" <?php echo ($filiere === '4') ? 'selected' : ''; ?>>Autres</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Motivation:</label>
-            <textarea name="motivation" rows="4" cols="50"><?php echo $motivation; ?></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>J'ai lu et j'accepte les conditions d'utilisation</label>
-            <input type="checkbox" name="conditions" <?php echo $conditions ? 'checked' : ''; ?>>
-        </div>
-
-        <button type="submit">Soumettre</button>
-
-    </form>
 
 </div>
 
