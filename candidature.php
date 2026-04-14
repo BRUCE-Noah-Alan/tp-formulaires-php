@@ -66,42 +66,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-group">
             <label>Prénom:</label>
-            <input type="text" name="prenom">
+            <input type="text" name="prenom" value="<?php echo $prenom; ?>">
         </div>
 
         <div class="form-group">
             <label>Nom:</label>
-            <input type="text" name="nom">
+            <input type="text" name="nom" value="<?php echo $nom; ?>">
         </div>
 
         <div class="form-group">
             <label>Email:</label>
-            <input type="email" name="email">
+            <input type="email" name="email" value="<?php echo $email; ?>">
         </div>
 
         <div class="form-group">
             <label>Âge:</label>
-            <input type="number" name="age">
+            <input type="number" name="age" value="<?php echo $age; ?>">
         </div>
 
         <div class="form-group">
             <select name="filiere">
                 <option value="">Sélectionnez votre filière</option>
-                <option value="1">Informatique</option>
-                <option value="2">Mathematique</option>
-                <option value="3">Physique</option>
-                <option value="4">Autres</option>
+                <option value="1" <?php echo ($filiere === '1') ? 'selected' : ''; ?>>Informatique</option>
+                <option value="2" <?php echo ($filiere === '2') ? 'selected' : ''; ?>>Mathematique</option>
+                <option value="3" <?php echo ($filiere === '3') ? 'selected' : ''; ?>>Physique</option>
+                <option value="4" <?php echo ($filiere === '4') ? 'selected' : ''; ?>>Autres</option>
             </select>
         </div>
 
         <div class="form-group">
             <label>Motivation:</label>
-            <textarea name="motivation" rows="4" cols="50"></textarea>
+            <textarea name="motivation" rows="4" cols="50"><?php echo $motivation; ?></textarea>
         </div>
 
         <div class="form-group">
             <label>J'ai lu et j'accepte les conditions d'utilisation</label>
-            <input type="checkbox" name="conditions">
+            <input type="checkbox" name="conditions" <?php echo $conditions ? 'checked' : ''; ?>>
         </div>
 
         <button type="submit">Soumettre</button>
