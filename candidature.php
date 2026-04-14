@@ -7,6 +7,16 @@ $filiere    = '';
 $motivation = '';
 $conditions = false;
 $erreurs    = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $prenom     = $_POST['prenom']     ?? '';
+    $nom        = $_POST['nom']        ?? '';
+    $email      = $_POST['email']      ?? '';
+    $age        = $_POST['age']        ?? '';
+    $filiere    = $_POST['filiere']    ?? '';
+    $motivation = $_POST['motivation'] ?? '';
+    $conditions = isset($_POST['conditions']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
